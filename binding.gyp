@@ -102,7 +102,7 @@
                     }
                 ],
                 [
-                    "OS==\"mac\"",
+                    "OS==\"mac\" and target_arch==\"x64\"",
                     {
                         "defines": [ '__MACOS__' ],
                         "variables": {
@@ -123,6 +123,42 @@
                             ],
                             'OTHER_LDFLAGS': [
                                 '-Wl,-rpath,./prebuilds/darwin-x64/,-rpath,./node_modules/@dimensional/napi-canon-cameras/prebuilds/darwin-x64/',
+                                '-F ../third_party/<(edsdk_directory)/macos/EDSDK/Framework/',
+                                '-framework EDSDK'
+                            ]
+                        },
+                        "copies": [
+                            {
+                                "destination": "<(PRODUCT_DIR)",
+                                "files": [
+                                    "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Framework/EDSDK.Framework"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                [
+                    "OS==\"mac\" and target_arch==\"arm64\"",
+                    {
+                        "defines": [ '__MACOS__' ],
+                        "variables": {
+                            "edsdk_directory": "EDSDKv<(edsdk_version)M"
+                        },
+                        "include_dirs": [
+                            "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Header"
+                        ],
+                        "libraries": [
+                          "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Framework/EDSDK.framework"
+                        ],
+                        'xcode_settings': {
+                            'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+                            'MACOSX_DEPLOYMENT_TARGET': '10.15',
+                            'OTHER_CFLAGS': [
+                                '-std=c++17',
+                                '-Wno-ignored-attributes'
+                            ],
+                            'OTHER_LDFLAGS': [
+                                '-Wl,-rpath,./third_party/<(edsdk_directory)/macos/EDSDK/Framework/,-rpath,./prebuilds/darwin-arm64/,-rpath,./node_modules/@dimensional/napi-canon-cameras/prebuilds/darwin-arm64/',
                                 '-F ../third_party/<(edsdk_directory)/macos/EDSDK/Framework/',
                                 '-framework EDSDK'
                             ]

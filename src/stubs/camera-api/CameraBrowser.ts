@@ -8,7 +8,6 @@ import { StateEvent } from './StateEvent';
 import { Volume } from './Volume';
 
 export class CameraBrowser {
-
     [Symbol.toStringTag] = 'CameraBrowser';
 
     /**
@@ -41,6 +40,7 @@ export class CameraBrowser {
      * ```
      */
     constructor() {
+        console.log('CameraBrowser stub created.');
     }
 
     /**
@@ -279,7 +279,10 @@ export interface StateChangeEvent extends CameraDeviceEvent {
     stateEvent: StateEvent;
 }
 
-export type EventCallback = (eventName: string, event: CameraDeviceEvent | ApiError) => void;
+export type EventCallback = (
+    eventName: string,
+    event: CameraDeviceEvent | ApiError
+) => void;
 
 /**
  * @callback EventCallback
