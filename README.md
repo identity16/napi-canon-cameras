@@ -2,12 +2,13 @@
 
 EDSDK (Canon camera) wrapper module for Node.js
 
-* [Features](#features)
-* [Usage Example](#usage)
-* [Build Package](#build-package)
-  * [NPM Tasks](#npm-tasks)
-* [FAQ](#faq)
-* [API Documentation](API.md)
+- [@dimensional/napi-canon-cameras](#dimensionalnapi-canon-cameras)
+  - [Features](#features)
+  - [Usage](#usage)
+  - [Build Package](#build-package)
+    - [NPM Tasks](#npm-tasks)
+  - [FAQ](#faq)
+    - [Does the module work in Electron Applications?](#does-the-module-work-in-electron-applications)
 
 ## Features
 
@@ -103,7 +104,8 @@ The package does not include the Canon EDSDK files. To install the package you w
 to build a TGZ.
  
  1. Unpack the Canon EDSDK into `third_party`. Keep the package name as subdirectory.
-    * `EDSDKv131800W.zip` → `third_party/EDSDKv131800W`
+    * (Windows) `EDSDKv131800W.zip` → `third_party/EDSDKv131800W/Windows/...`
+    * (MacOS) `EDSDKv131800M.zip` → `third_party/EDSDKv131800M/macos/EDSDK/...`
  2. Make sure the variable `edsdk_version` in `binding.gyp` matches the EDSDK version. (The numeric part of the 
     package name)
  3. Run `npm run package`
